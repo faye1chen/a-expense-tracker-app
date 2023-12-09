@@ -25,7 +25,7 @@ DerivedData
 Podfile.lock
 Pods
 *.xcworkspace
-GoodbyeMoney/Configs/*.xcconfig
-!GoodbyeMoney/Configs/example.xcconfig
+#GoodbyeMoney/Configs/*.xcconfig
+#!GoodbyeMoney/Configs/example.xcconfig
 
 .sentryclirc

@@ -1,0 +1,16 @@
+//
+//  debug.xcconfig
+//  GoodbyeMoney
+//
+//  Created by Yifei.Chen on 12/8/23.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+#include "Pods/Target Support Files/Pods-GoodbyeMoney/Pods-GoodbyeMoney.debug.xcconfig"
+
+SENTRY_DSN =dfbba67b1292262c307e1fc05c6ec6cc@o4506362446807040.ingest.sentry.io/4506362459389952
+SENTRY_ENVIRONMENT = [development]
+SENTRY_TRACES_SAMPLE_RATE = 1.0
+SENTRY_PROFILES_SAMPLE_RATE = 1.0
