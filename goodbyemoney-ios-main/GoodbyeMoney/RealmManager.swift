@@ -13,17 +13,23 @@ class RealmManager: ObservableObject {
     @Published var expenses: [Expense] = []
     @Published var categories: [Category] = []
 
-    
     init() {
         openRealm()
         
-        loadExpenses()
-        loadCategories()
+//        loadExpenses()
+//        loadCategories()
     }
     
     func openRealm() {
         do {
-            let config = Realm.Configuration(schemaVersion: 1)
+            let config = Realm.Configuration(
+                schemaVersion: 2, // 更新架构版本
+                migrationBlock: { migration, oldSchemaVersion in
+                     if oldSchemaVersion < 2 {
+                         // 迁移逻辑
+                         // 因为这里是添加属性，所以可能不需要写具体的迁移代码
+                     }
+                })
             
             Realm.Configuration.defaultConfiguration = config
             
@@ -61,14 +67,13 @@ class RealmManager: ObservableObject {
     }
     
     func loadCategories() {
-        if let localRealm = localRealm {
-            let allCategories = localRealm.objects(Category.self)
-            
-            categories = []
-            
-            allCategories.forEach { category in
-                categories.append(category)
-            }
+        print(UserManager.shared.currentUser!)
+        
+        if let localRealm = localRealm, let userId = UserManager.shared.currentUser?.userId.stringValue {
+            print(userId)
+            let userCategories = localRealm.objects(Category.self).filter("userId == %@", userId)
+
+            categories = Array(userCategories)
         }
     }
     

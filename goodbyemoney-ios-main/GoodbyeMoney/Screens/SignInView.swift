@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct SignInView: View {
-    @EnvironmentObject var userManager: UserManager
     // 表示 SignInView 依赖于一个RealmManager类型的环境对象
     @EnvironmentObject var realmManager: RealmManager
     
@@ -33,9 +32,12 @@ struct SignInView: View {
             // TODO: Alert
             showHomePage.toggle()
             
-            userManager.currentUser = curUser!
-            print("Cur User...")
-            print(curUser!)
+            UserManager.shared.currentUser = curUser!
+            realmManager.loadCategories()
+            realmManager.loadExpenses()
+            
+//            print("Cur User...")
+//            print(curUser!)
         } else {
             print("User not found or password is incorrect.")
             return
@@ -112,7 +114,7 @@ struct SignInView: View {
                 ContentView()
             }
             .navigationDestination(isPresented: $showSignUp) {
-                SignUpView().environmentObject(RealmManager()).environmentObject(UserManager())
+                SignUpView()
             }
 
         }

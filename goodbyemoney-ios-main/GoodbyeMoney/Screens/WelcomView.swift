@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct WelcomView: View {
-//    @StateObject var userManager = UserManager()
-//    @StateObject var realmManager = RealmManager()
+    // @StateObject var realmManager = RealmManager()
     
     @State var showSignIn: Bool = false
 
@@ -34,7 +33,7 @@ struct WelcomView: View {
             .navigationBarBackButtonHidden(true)
             .ignoresSafeArea()
             .navigationDestination(isPresented: $showSignIn) {
-                SignInView().environmentObject(RealmManager()).environmentObject(UserManager())
+                SignInView()
             }
         }
     }

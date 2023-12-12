@@ -41,5 +41,9 @@ class User: Object, ObjectKeyIdentifiable {
 }
 
 class UserManager: ObservableObject {
+    static let shared = UserManager()
+    
     @Published var currentUser: User?
+
+    private init() {}
 }

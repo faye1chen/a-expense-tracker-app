@@ -17,7 +17,8 @@ struct Categories: View {
     
     func handleSubmit() {
         if newCategoryName.count > 0 {
-            self.realmManager.submitCategory(Category(
+            realmManager.submitCategory(
+                Category(
                 name: newCategoryName,
                 color: newCategoryColor
             ))

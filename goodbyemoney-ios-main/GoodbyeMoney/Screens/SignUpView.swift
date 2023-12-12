@@ -149,7 +149,7 @@ struct SignUpView: View {
             .navigationBarBackButtonHidden(true)
             .ignoresSafeArea()
             .navigationDestination(isPresented: $showSignIn) {
-                SignInView().environmentObject(RealmManager()).environmentObject(UserManager())
+                SignInView()
             }
         }
     }
