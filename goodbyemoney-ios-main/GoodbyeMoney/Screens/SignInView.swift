@@ -21,15 +21,15 @@ struct SignInView: View {
     @State private var alertMessage = ""
     
     func handleSignIn() {
-//        guard validateInputs() else {
-//            print("Invalid Input.")
-//            return
-//        }
+        guard validateInputs() else {
+            print("Invalid Input.")
+            return
+        }
 //        txtEmail = "Alicelmx@126.com"
 //        txtPassword = "lmx1994.LMX@"
-        
-        txtEmail = "Xuyi@gmail.com"
-        txtPassword = "lmx1994.LMX@"
+//        
+//        txtEmail = "Xuyi@gmail.com"
+//        txtPassword = "lmx1994.LMX@"
         
         let curUser = realmManager.signInUser(txtEmail, txtPassword)
         
