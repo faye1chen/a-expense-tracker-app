@@ -45,7 +45,7 @@ struct GoodbyeMoneyApp: SwiftUI.App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            WelcomView()
         }
     }
 }

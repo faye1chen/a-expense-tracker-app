@@ -12,6 +12,7 @@ class RealmManager: ObservableObject {
     private(set) var localRealm: Realm?
     @Published var expenses: [Expense] = []
     @Published var categories: [Category] = []
+
     
     init() {
         openRealm()
@@ -99,5 +100,49 @@ class RealmManager: ObservableObject {
                 print("Error deleting category to Realm: \(error)")
             }
         }
+    }
+    
+    func signUpNewUser(_ user: User) {
+        if let localRealm = localRealm {
+            do {
+                try localRealm.write {
+                    localRealm.add(user)
+                    
+                    print("User submitted to Realm!", user)
+                }
+            } catch {
+                print("Error submitting user to Realm: \(error)")
+            }
+        }
+    }
+    
+    func signInUser(_ email : String, _ password : String) -> User? {
+        guard let localRealm = localRealm else {
+            print("Realm not initialized")
+            return nil
+        }
+        
+        let users = localRealm.objects(User.self).filter("email == %@", email)
+        if let user = users.first {
+            if !user.validatePassword(password) {
+                print("Password error")
+                return nil
+            } else {
+                return user
+            }
+        } else {
+            print("No user found with the given email")
+            return nil
+        }
+    }
+    
+    func getUserByEmail(_ email: String) -> User? {
+        guard let localRealm = localRealm else {
+            print("Realm not initialized")
+            return nil
+        }
+        
+        let users = localRealm.objects(User.self).filter("email == %@", email)
+        return users.first
     }
 }
