@@ -6,13 +6,15 @@
 //
 
 import SwiftUI
+import RealmSwift
+import AVKit
 
 struct ContentView: View {
     @EnvironmentObject var realmManager: RealmManager
     
     var body: some View {
         TabView {
-            Expenses(expenses: realmManager.expenses)
+            Expenses()
                 .tabItem {
                     Label("Expenses", systemImage: "tray.and.arrow.up.fill")
                 }
@@ -27,9 +29,12 @@ struct ContentView: View {
                     Label("Add", systemImage: "plus")
                 }
             
-            Settings()
+            SettingsView()
+//                .tabItem {
+//                    Label("Settings", systemImage: "gearshape.fill")
+//                }
                 .tabItem {
-                    Label("Settings", systemImage: "gearshape.fill")
+                    Label("SettingsView", systemImage: "gearshape.fill")
                 }
         }
     }

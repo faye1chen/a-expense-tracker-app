@@ -10,6 +10,8 @@ import RealmSwift
 import CommonCrypto
 
 class User: Object, ObjectKeyIdentifiable {
+    static var userIdPredicate =  NSPredicate(format: "userId == %@", (UserManager.shared.currentUser?.userId.stringValue)!)
+    
     @Persisted(primaryKey: true) var userId: ObjectId
     @Persisted var email: String
     @Persisted var hashedPassword: String

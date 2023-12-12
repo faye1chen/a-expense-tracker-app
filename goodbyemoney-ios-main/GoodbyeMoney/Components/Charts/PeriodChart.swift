@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import RealmSwift
 
 struct PeriodChart: View {
     @EnvironmentObject var realmManager: RealmManager
@@ -16,8 +17,9 @@ struct PeriodChart: View {
     @State private var averageForPeriod: Double = 0
     @State private var daysInMonth: Int = 30
     
+    @ObservedResults(Expense.self, filter: User.userIdPredicate) var expenses
+    
     var period: Period = Period.week
-    var expenses: [Expense] = []
     var periodIndex: Int = 0
     
     func formatDateRange(startDate: Date, endDate: Date) -> String {
@@ -43,7 +45,7 @@ struct PeriodChart: View {
     }
     
     func setupData() {
-        let (newExpenses, range) = filterExpensesInPeriod(period: period, expenses: realmManager.expenses, periodIndex: periodIndex)
+        let (newExpenses, range) = filterExpensesInPeriod(period: period, expenses: Array(expenses), periodIndex: periodIndex)
         var total: Double = 0
         var average: Double = 0
 
@@ -67,6 +69,7 @@ struct PeriodChart: View {
         periodString = formatDateRange(startDate: range.lowerBound, endDate: range.upperBound)
         totalForPeriod = total
         averageForPeriod = average
+        
         displayExpenses = newExpenses
     }
 

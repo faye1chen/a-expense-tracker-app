@@ -10,22 +10,17 @@ import RealmSwift
 
 class RealmManager: ObservableObject {
     private(set) var localRealm: Realm?
-    @Published var expenses: [Expense] = []
-    @Published var categories: [Category] = []
 
     init() {
         openRealm()
-        
-//        loadExpenses()
-//        loadCategories()
     }
     
     func openRealm() {
         do {
             let config = Realm.Configuration(
-                schemaVersion: 2, // 更新架构版本
+                schemaVersion: 3, // 更新架构版本
                 migrationBlock: { migration, oldSchemaVersion in
-                     if oldSchemaVersion < 2 {
+                     if oldSchemaVersion < 3 {
                          // 迁移逻辑
                          // 因为这里是添加属性，所以可能不需要写具体的迁移代码
                      }
@@ -39,72 +34,31 @@ class RealmManager: ObservableObject {
         }
     }
     
-    func loadExpenses() {
-        if let localRealm = localRealm {
-            let allExpenses = localRealm.objects(Expense.self).sorted(byKeyPath: "date")
-            
-            expenses = []
-            
-            allExpenses.forEach { expense in
-                expenses.append(expense)
-            }
-        }
-    }
-    
-    func submitExpense(_ expense: Expense) {
+    func deleteAllData() {
         if let localRealm = localRealm {
             do {
                 try localRealm.write {
-                    localRealm.add(expense)
+                    localRealm.deleteAll()
                     
-                    loadExpenses()
-                    print("Expense submitted to Realm!", expense)
+                    print("Delete Successfully.")
                 }
             } catch {
-                print("Error submitting expense to Realm: \(error)")
+                print("Error deleting all data: \(error)")
             }
         }
-    }
-    
-    func loadCategories() {
-        print(UserManager.shared.currentUser!)
         
-        if let localRealm = localRealm, let userId = UserManager.shared.currentUser?.userId.stringValue {
-            print(userId)
-            let userCategories = localRealm.objects(Category.self).filter("userId == %@", userId)
-
-            categories = Array(userCategories)
-        }
+        
     }
     
-    func submitCategory(_ category: Category) {
-        if let localRealm = localRealm {
-            do {
-                try localRealm.write {
-                    localRealm.add(category)
-                    
-                    loadCategories()
-                    print("Category submitted to Realm!", category)
-                }
-            } catch {
-                print("Error submitting category to Realm: \(error)")
-            }
+    func getCateByCateId(_ selectedCategoryId : ObjectId) -> Category? {
+        guard let localRealm = localRealm else {
+            print("Realm not initialized")
+            return nil
         }
-    }
-    
-    func deleteCategory(category: Category) {
-        if let localRealm = localRealm {
-            do {
-                try localRealm.write {
-                    localRealm.delete(category)
-                    
-                    loadCategories()
-                    print("Category deleted from Realm!", category)
-                }
-            } catch {
-                print("Error deleting category to Realm: \(error)")
-            }
-        }
+        
+        let cate = localRealm.objects(Category.self).filter("_id == %@", selectedCategoryId)
+        
+        return cate.first
     }
     
     func signUpNewUser(_ user: User) {

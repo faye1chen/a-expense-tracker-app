@@ -13,15 +13,21 @@ struct Add: View {
     @EnvironmentObject var realmManager: RealmManager
     
     @State private var selectedCategory: Category = Category(name: "Create a category first", color: Color.clear)
+    
+    @State private var selectedCategoryId: ObjectId = ObjectId()
 
     @State private var amount = ""
     @State private var recurrence = Recurrence.none
     @State private var date = Date()
     @State private var note = ""
     
+    @ObservedResults(Category.self, filter: User.userIdPredicate) var categories
+    @ObservedResults(Expense.self, filter: User.userIdPredicate) var expenses
+    
     func onAppear() {
-        if realmManager.categories.count > 0 {
-            self.selectedCategory = realmManager.categories[0]
+        if categories.count > 0 {
+            self.selectedCategory = categories[0]
+            self.selectedCategoryId = selectedCategory._id
         }
     }
     
@@ -32,13 +38,10 @@ struct Add: View {
     }
     
     func handleCreate() {
-        self.realmManager.submitExpense(Expense(
-            amount: Double(self.amount)!,
-            category: self.selectedCategory,
-            date: self.date,
-            note: self.note.count == 0 ? self.selectedCategory.name : self.note,
-            recurrence: self.recurrence
-        ))
+        $expenses.append(Expense(amount: Double(self.amount) ?? 0.0, category: realmManager.getCateByCateId(selectedCategoryId)!, date: self.date, note: self.note, recurrence: self.recurrence))
+        
+        print(expenses)
+
         self.amount = ""
         self.recurrence = Recurrence.none
         self.date = Date()
@@ -93,14 +96,15 @@ struct Add: View {
                     HStack {
                         Text("Category")
                         Spacer()
-                        Picker(selection: $selectedCategory, label: Text(""), content: {
-                            if realmManager.categories.count > 0 {
-                                ForEach(realmManager.categories) { category in
-                                    Text(category.name).tag(category)
+                        Picker(selection: $selectedCategoryId, label: Text(""), content: {
+                                if categories.count > 0 {
+                                    ForEach(categories, id: \.self) { category in
+                                        Text(category.name).tag(category._id)
+                                    }
+                                } else {
+                                    Text(selectedCategory.name).tag(selectedCategory._id)
                                 }
-                            } else {
-                                Text(selectedCategory.name).tag(selectedCategory)
-                            }
+                            
                         })
                     }
                 }
@@ -121,16 +125,16 @@ struct Add: View {
                 
                 Spacer()
             }
-            .toolbar {
-                ToolbarItemGroup(placement: .keyboard) {
-                    Spacer()
-                    Button {
-                        hideKeyboard()
-                    } label: {
-                        Label("Dismiss", systemImage: "keyboard.chevron.compact.down")
-                    }
-                }
-            }
+//            .toolbar {
+//                ToolbarItemGroup(placement: .keyboard) {
+//                    Spacer()
+//                    Button {
+//                        hideKeyboard()
+//                    } label: {
+//                        Label("Dismiss", systemImage: "keyboard.chevron.compact.down")
+//                    }
+//                }
+//            }
             .padding(.top, 16)
             .navigationTitle("Add")
         }
