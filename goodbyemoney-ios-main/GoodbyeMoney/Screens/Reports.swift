@@ -12,6 +12,8 @@ struct Reports: View {
     @State private var tabViewSelection = 0
     @State private var expenses: [Expense] = []
     @State private var pagesRange = 0..<53
+    @State private var showSaveAlert = false
+
     
     func setPagesRange() {
         switch self.period {
@@ -25,6 +27,26 @@ struct Reports: View {
             pagesRange = 0..<1
         }
     }
+    
+    
+    func captureAndSaveReport() {
+        guard let window = UIApplication.shared.windows.first else { return }
+        let captureRect = CGRect(x: 0, y: 0, width: window.bounds.width, height: window.bounds.height - 410)
+        guard let capturedImage = CaptureUIView.capture(view: window, rect: captureRect) else { return }
+        let imageWithText = capturedImage.addingText("Here is my expense report, come and join me!")
+
+        let imageSaver = ImageSaver()
+        imageSaver.successHandler = {
+            self.showSaveAlert = true
+        }
+        imageSaver.errorHandler = {
+            // 这里处理错误
+        }
+
+        UIImageWriteToSavedPhotosAlbum(imageWithText, imageSaver, #selector(ImageSaver.image(_:didFinishSavingWithError:contextInfo:)), nil)
+    }
+
+    
 
     var body: some View {
         NavigationView {
@@ -40,11 +62,24 @@ struct Reports: View {
                 .environment(\.layoutDirection, .rightToLeft)
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 .id(pagesRange)
+                
+//                // 捕获和保存报告的按钮
+//                Button("Capture Report") {
+//                    captureAndSaveReport()
+//                }
+//                .padding()
+//                .background(Color.blue)
+//                .foregroundColor(Color.white)
+//                .cornerRadius(10)
             }
             .padding(.top, 16)
             .navigationTitle("Reports")
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    // 新增的 "Capture Report" 按钮，使用 Label
+                    Button(action: captureAndSaveReport) {
+                        Label("Capture Report", systemImage: "camera") // 使用您选择的图标
+                    }
                     Menu {
                         Picker(selection: $period, label: Text("Period"), content: {
                             Text(Period.week.rawValue).tag(Period.week)
@@ -57,9 +92,13 @@ struct Reports: View {
                 }
             }
         }
+        .alert(isPresented: $showSaveAlert) {
+            Alert(title: Text("保存成功"), message: Text("您的报告已保存到相册。"), dismissButton: .default(Text("好的")))
+        }
         .onChange(of: period) { _ in
             self.tabViewSelection = 0
             setPagesRange()
+
         }
     }
 }
@@ -67,5 +106,19 @@ struct Reports: View {
 struct Reports_Previews: PreviewProvider {
     static var previews: some View {
         Reports()
+    }
+}
+
+// 辅助类，用于处理图片保存回调
+class ImageSaver: NSObject {
+    var successHandler: (() -> Void)?
+    var errorHandler: (() -> Void)?
+
+    @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        if error == nil {
+            successHandler?()
+        } else {
+            errorHandler?()
+        }
     }
 }
