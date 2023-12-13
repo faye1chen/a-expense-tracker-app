@@ -2,13 +2,43 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>SENTRY_DSN</key>
-	<string>$(SENTRY_DSN)</string>
-	<key>SENTRY_ENVIRONMENT</key>
-	<string>$(SENTRY_ENVIRONMENT)</string>
-	<key>SENTRY_PROFILES_SAMPLE_RATE</key>
-	<string>$(SENTRY_PROFILES_SAMPLE_RATE)</string>
-	<key>SENTRY_TRACES_SAMPLE_RATE</key>
-	<string>$(SENTRY_TRACES_SAMPLE_RATE)</string>
+	<key>CFBundleIdentifier</key>
+	<string></string>
+	<key>CFBundleExecutable</key>
+	<string></string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
+	<key>CFBundleName</key>
+	<string></string>
+	<key>CFBundleDisplayName</key>
+	<string></string>
+	<key>CFBundleVersion</key>
+	<string></string>
+	<key>CFBundleShortVersionString</key>
+	<string></string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>&quot;This app needs access to your photo album to save report images.&quot;
+
+
+
+
+
+&quot;This app needs access to your photo album to save report images.&quot;
+
+
+
+
+
+&quot;This app needs access to your photo album to save report images.&quot;
+
+
+
+
+
+This app needs access to your photo album to save report images</string>
+	<key>CFBundleGetInfoString</key>
+	<string></string>
 </dict>
 </plist>
