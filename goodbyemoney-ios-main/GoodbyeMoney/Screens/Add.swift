@@ -2,7 +2,6 @@
 //  Add.swift
 //  GoodbyeMoney
 //
-//  Created by Lazar Nikolov on 2022-09-16.
 //
 
 import SwiftUI

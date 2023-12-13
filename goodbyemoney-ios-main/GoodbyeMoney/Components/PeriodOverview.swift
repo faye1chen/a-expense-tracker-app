@@ -2,7 +2,6 @@
 //  PeriodOverview.swift
 //  GoodbyeMoney
 //
-//  Created by Lazar Nikolov on 3.10.22.
 //
 
 import SwiftUI

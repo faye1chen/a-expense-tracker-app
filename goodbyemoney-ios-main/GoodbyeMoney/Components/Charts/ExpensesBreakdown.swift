@@ -2,7 +2,6 @@
 //  ExpensesBreakdown.swift
 //  GoodbyeMoney
 //
-//  Created by Lazar Nikolov on 2022-09-23.
 //
 
 import SwiftUI

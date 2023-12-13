@@ -1,8 +1,6 @@
 //
 //  SignUpView.swift
-//  Trackizer
 //
-//  Created by CodeForAny on 11/07/23.
 //
 
 import SwiftUI
