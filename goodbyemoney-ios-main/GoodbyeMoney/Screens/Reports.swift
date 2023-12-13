@@ -30,9 +30,15 @@ struct Reports: View {
     
     func captureAndSaveReport() {
         guard let window = UIApplication.shared.windows.first else { return }
-        let captureRect = CGRect(x: 0, y: 0, width: window.bounds.width, height: window.bounds.height - 410)
+        let headerHeight: CGFloat = 100  // 需要截取的头部高度
+        let footerHeight: CGFloat = 350  // 需要截取的尾部高度
+        let captureHeight = window.bounds.height - headerHeight - footerHeight
+
+        let captureRect = CGRect(x: 0, y: headerHeight, width: window.bounds.width, height: captureHeight)
+
+//        let captureRect = CGRect(x: 0, y: 0, width: window.bounds.width, height: window.bounds.height - 410)
         guard let capturedImage = CaptureUIView.capture(view: window, rect: captureRect) else { return }
-        let imageWithText = capturedImage.addingText("Here is my expense report, come and join me!")
+        let imageWithText = capturedImage.addingText("Come and join me!")
 
         let imageSaver = ImageSaver()
         imageSaver.successHandler = {
@@ -91,7 +97,7 @@ struct Reports: View {
             }
         }
         .alert(isPresented: $showSaveAlert) {
-            Alert(title: Text("保存成功"), message: Text("您的报告已保存到相册。"), dismissButton: .default(Text("好的")))
+            Alert(title: Text("Save successfully"), message: Text("Your report has been saved to the photo album."), dismissButton: .default(Text("OK")))
         }
         .onChange(of: period) { _ in
             self.tabViewSelection = 0
