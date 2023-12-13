@@ -27,5 +27,7 @@ Pods
 *.xcworkspace
 #GoodbyeMoney/Configs/*.xcconfig
 #!GoodbyeMoney/Configs/example.xcconfig
+.DS_Store
+
 
 .sentryclirc
