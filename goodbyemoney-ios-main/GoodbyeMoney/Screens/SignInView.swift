@@ -21,25 +21,28 @@ struct SignInView: View {
     @State private var alertMessage = ""
     
     func handleSignIn() {
-        guard validateInputs() else {
-            print("Invalid Input.")
-            return
-        }
-//        txtEmail = "Alicelmx@126.com"
-//        txtPassword = "lmx1994.LMX@"
-//        
+//        guard validateInputs() else {
+//            return
+//        }
+        txtEmail = "Alicelmx@126.com"
+        txtPassword = "lmx1994.LMX@"
+        
 //        txtEmail = "Xuyi@gmail.com"
 //        txtPassword = "lmx1994.LMX@"
+//        UserDefaults.standard.set(false, forKey: "isAppPINEnabled")
         
         let curUser = realmManager.signInUser(txtEmail, txtPassword)
         
         if curUser != nil {
-            // TODO: Alert
             showHomePage.toggle()
             
+            // 登陆后存储用户信息和用户设置
             UserManager.shared.currentUser = curUser!
+            UserManager.shared.isAppPINEnabled = UserDefaults.standard.bool(forKey: "isAppPINEnabled")
         } else {
-            print("User not found or password is incorrect.")
+            alertMessage = "User not found or password is incorrect."
+            showingAlert = true
+            
             return
         }
     }
@@ -105,6 +108,16 @@ struct SignInView: View {
                     })
                     .padding(.bottom, .bottomInsets + 8)
                 }
+            }
+            .alert(isPresented: $showingAlert) {
+                Alert(
+                    title: Text("Error"),
+                    message: Text(alertMessage),
+                    dismissButton: .default(Text("OK")){
+                        showingAlert = false
+                        alertMessage = ""
+                    }
+                )
             }
             .navigationTitle("")
             .navigationBarHidden(true)

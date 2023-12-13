@@ -12,6 +12,17 @@ struct SettingsView: View {
     @State var isActive: Bool = false
     @State var showCategories: Bool = false
     @State var showLogin: Bool = false
+    @State var pinSetup: Bool = false
+    @State var isAppPINEnabled: Bool = false {
+        didSet {
+            // 在这里添加当开关状态改变时的逻辑
+            if isAppPINEnabled {
+                print("Toggle state is now enable")
+            } else {
+                print("fdfdfdf")
+            }
+        }
+    }
     
     var body: some View {
         NavigationView {
@@ -25,12 +36,8 @@ struct SettingsView: View {
                     Text("User")
                         .font(.customfont(.bold, fontSize: 20))
                         .foregroundColor(.white)
-                    // TODO: 记得改回来
-                    //                Text(UserManager.shared.currentUser!.email)
-                    //                    .font(.customfont(.medium, fontSize: 12))
-                    //                    .accentColor(.gray30)
                     
-                    Text("UserManager.shared.currentUser!.email")
+                    Text(UserManager.shared.currentUser!.email)
                         .font(.customfont(.medium, fontSize: 12))
                         .accentColor(.gray30)
                 }
@@ -45,6 +52,10 @@ struct SettingsView: View {
                         IconItemRow(icon: "category", title: "Category", value: "", onClick: {
                             showCategories.toggle()
                         })
+                        
+                        IconItemRow(icon: "category", title: "App Pin", value: "") {
+                            pinSetup.toggle()
+                        }
                         
                         IconItemRow(icon: "aboutus", title: "About Us", value: "", onClick: {
                             showCategories.toggle()
@@ -68,13 +79,15 @@ struct SettingsView: View {
             }
             .padding(.horizontal, 20)
             .navigationTitle("Settings")
-            .background(Color.grayC)
             .ignoresSafeArea()
             .navigationDestination(isPresented: $showCategories) {
                 Categories()
             }
             .navigationDestination(isPresented: $showLogin) {
                 SignInView()
+            }
+            .navigationDestination(isPresented: $pinSetup) {
+                PinSetupView()
             }
         }
         

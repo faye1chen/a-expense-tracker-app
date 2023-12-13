@@ -7,6 +7,8 @@
 
 import Foundation
 
+let easternTimeZone = TimeZone(identifier: "America/New_York")!
+
 func parseDate(_ date: String) -> Date {
     let dateFormatter = DateFormatter()
     dateFormatter.locale = Locale(identifier: "en_US_POSIX")
@@ -30,7 +32,7 @@ func parseDate(_ date: String) -> Date {
 
 func intervalForPeriod(period: Period, periodIndex: Int) -> DateInterval {
     var calendar = Calendar.current
-    calendar.timeZone = TimeZone(identifier: "UTC")!
+    calendar.timeZone = TimeZone(identifier: "America/New_York")!
     calendar.firstWeekday = 2
     
     var components: DateComponents

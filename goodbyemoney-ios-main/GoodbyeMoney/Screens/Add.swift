@@ -140,6 +140,8 @@ struct Add: View {
         }
         .onAppear {
             onAppear()
+            print("======")
+            print(Date())
         }
     }
 }

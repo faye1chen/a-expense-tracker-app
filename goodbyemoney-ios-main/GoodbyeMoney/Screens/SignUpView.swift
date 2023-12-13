@@ -23,10 +23,10 @@ struct SignUpView: View {
         }
         
         let newUser = User(email: txtEmail, password: txtPassword)
-        
         self.realmManager.signUpNewUser(newUser)
         
-        showSignIn.toggle()
+        showingAlert = true
+        alertMessage = "Sign Up Successfully!"
     }
     
     func validateInputs() -> Bool {
@@ -84,29 +84,6 @@ struct SignUpView: View {
                         .padding(.horizontal, 20)
                         .padding(.bottom, 20)
                     
-                    HStack {
-                        
-                        Rectangle()
-                            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 5, maxHeight: 5)
-                            .padding(.horizontal, 1)
-                        
-                        Rectangle()
-                            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 5, maxHeight: 5)
-                            .padding(.horizontal, 1)
-                        
-                        Rectangle()
-                            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 5, maxHeight: 5)
-                            .padding(.horizontal, 1)
-                        
-                        Rectangle()
-                            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 5, maxHeight: 5)
-                            .padding(.horizontal, 1)
-                        
-                    }
-                    .padding(.horizontal, 20)
-                    .foregroundColor(.gray70)
-                    .padding(.bottom, 20)
-                    
                     Text("Use 8 or more characters with a mix of letters,\nnumbers & symbols.")
                         .multilineTextAlignment(.leading)
                         .font(.customfont(.regular, fontSize: 14))
@@ -136,11 +113,13 @@ struct SignUpView: View {
             }
             .alert(isPresented: $showingAlert) {
                 Alert(
-                    title: Text("错误"),
+                    title: Text("Info"),
                     message: Text(alertMessage),
-                    dismissButton: .default(Text("好的")){
+                    dismissButton: .default(Text("OK")){
                         showingAlert = false
                         alertMessage = ""
+                        
+                        showSignIn.toggle()
                     }
                 )
             }

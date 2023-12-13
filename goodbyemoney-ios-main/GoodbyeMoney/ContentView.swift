@@ -11,32 +11,41 @@ import AVKit
 
 struct ContentView: View {
     @EnvironmentObject var realmManager: RealmManager
+    @State var needPinVerification: Bool = false
     
     var body: some View {
-        TabView {
-            Expenses()
-                .tabItem {
-                    Label("Expenses", systemImage: "tray.and.arrow.up.fill")
+        
+            TabView {
+                Expenses()
+                    .tabItem {
+                        Label("Expenses", systemImage: "tray.and.arrow.up.fill")
+                    }
+                
+                Reports()
+                    .tabItem {
+                        Label("Reports", systemImage: "chart.bar.fill")
+                    }
+                
+                Add()
+                    .tabItem {
+                        Label("Add", systemImage: "plus")
+                    }
+                
+                SettingsView()
+                    .tabItem {
+                        Label("Settings", systemImage: "gearshape.fill")
+                    }
+            }
+            .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
+                if UserManager.shared.isAppPINEnabled {
+                    needPinVerification.toggle()
                 }
-            
-            Reports()
-                .tabItem {
-                    Label("Reports", systemImage: "chart.bar.fill")
-                }
-            
-            Add()
-                .tabItem {
-                    Label("Add", systemImage: "plus")
-                }
-            
-            SettingsView()
-//                .tabItem {
-//                    Label("Settings", systemImage: "gearshape.fill")
-//                }
-                .tabItem {
-                    Label("SettingsView", systemImage: "gearshape.fill")
-                }
-        }
+            }
+            .fullScreenCover(isPresented: $needPinVerification) {
+                // 您的PIN验证视图
+                PinValidateView()
+            }
+        
     }
 }
 

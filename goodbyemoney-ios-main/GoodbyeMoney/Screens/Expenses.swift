@@ -23,11 +23,13 @@ struct Expenses: View {
     func reloadData() {
         filteredExpenses = filterExpensesInPeriod(period: timeFilter, expenses: Array(expenses), periodIndex: 0).expenses
         
+        // 根据searchQuery过滤expenses
+        filteredExpenses = searchQuery.isEmpty
+            ? filteredExpenses
+        : filteredExpenses.filter { $0.category!.name.lowercased().contains(searchQuery.lowercased()) }
+
         totalExpenses = 0
-        
-        filteredExpenses.forEach{ expense in
-            totalExpenses += expense.amount
-        }
+        totalExpenses = filteredExpenses.reduce(0) { $0 + $1.amount }
     }
     
     var body: some View {
@@ -71,6 +73,9 @@ struct Expenses: View {
             prompt: "Search expenses"
         )
         .onChange(of: timeFilter) { newFilter in
+            reloadData()
+        }
+        .onChange(of: searchQuery) { _ in
             reloadData()
         }
         .onAppear {

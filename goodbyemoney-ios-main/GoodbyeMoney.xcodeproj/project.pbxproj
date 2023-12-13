@@ -20,6 +20,9 @@
 		67BC05DE2B28EB4F006C1E9A /* IconItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BC05DB2B28EB4F006C1E9A /* IconItemRow.swift */; };
 		67BC05DF2B28EB4F006C1E9A /* IconItemSwitchRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BC05DC2B28EB4F006C1E9A /* IconItemSwitchRow.swift */; };
 		67BC05E02B28EB4F006C1E9A /* ItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BC05DD2B28EB4F006C1E9A /* ItemRow.swift */; };
+		67BC05E42B296D10006C1E9A /* PinSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BC05E32B296D10006C1E9A /* PinSetupView.swift */; };
+		67BC05E62B297853006C1E9A /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BC05E52B297853006C1E9A /* KeychainManager.swift */; };
+		67BC05E82B2A13D2006C1E9A /* PinValidateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BC05E72B2A13D2006C1E9A /* PinValidateView.swift */; };
 		7E24D07028EB32E10085EF99 /* PeriodOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E24D06F28EB32E10085EF99 /* PeriodOverview.swift */; };
 		7E24D07528EC8B1A0085EF99 /* MonthChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E24D07428EC8B1A0085EF99 /* MonthChart.swift */; };
 		7E24D07728EC8B6C0085EF99 /* YearChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E24D07628EC8B6C0085EF99 /* YearChart.swift */; };
@@ -67,6 +70,9 @@
 		67BC05DB2B28EB4F006C1E9A /* IconItemRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconItemRow.swift; sourceTree = "<group>"; };
 		67BC05DC2B28EB4F006C1E9A /* IconItemSwitchRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconItemSwitchRow.swift; sourceTree = "<group>"; };
 		67BC05DD2B28EB4F006C1E9A /* ItemRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemRow.swift; sourceTree = "<group>"; };
+		67BC05E32B296D10006C1E9A /* PinSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinSetupView.swift; sourceTree = "<group>"; };
+		67BC05E52B297853006C1E9A /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
+		67BC05E72B2A13D2006C1E9A /* PinValidateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinValidateView.swift; sourceTree = "<group>"; };
 		67CADDF72B2405DD006E6873 /* release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = release.xcconfig; sourceTree = "<group>"; };
 		67CADDF82B24060D006E6873 /* debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = debug.xcconfig; sourceTree = "<group>"; };
 		7E24D06F28EB32E10085EF99 /* PeriodOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodOverview.swift; sourceTree = "<group>"; };
@@ -176,6 +182,7 @@
 				EB4B67F828D88A1E002A4D8B /* DateUtils.swift */,
 				EB97131D28DDE96900AB19AE /* Color.swift */,
 				675E3FC92B27CDC3006E1150 /* checkInputs.swift */,
+				67BC05E52B297853006C1E9A /* KeychainManager.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -249,6 +256,8 @@
 				EBA6850428D37A6B000C541E /* Reports.swift */,
 				EBA6850828D37EC2000C541E /* Categories.swift */,
 				EB510B7328D4CC1900D3C07B /* Add.swift */,
+				67BC05E32B296D10006C1E9A /* PinSetupView.swift */,
+				67BC05E72B2A13D2006C1E9A /* PinValidateView.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -398,6 +407,7 @@
 				67BC05DE2B28EB4F006C1E9A /* IconItemRow.swift in Sources */,
 				EB4B67EC28D8759C002A4D8B /* Expense.swift in Sources */,
 				675E3FCA2B27CDC3006E1150 /* checkInputs.swift in Sources */,
+				67BC05E42B296D10006C1E9A /* PinSetupView.swift in Sources */,
 				7E24D07028EB32E10085EF99 /* PeriodOverview.swift in Sources */,
 				EBA6850328D37A58000C541E /* Expenses.swift in Sources */,
 				EB4B67FB28D8A504002A4D8B /* Tag.swift in Sources */,
@@ -417,6 +427,7 @@
 				675E3FB92B27B274006E1150 /* WelcomView.swift in Sources */,
 				EB4B67F728D887B9002A4D8B /* ExpensesUtils.swift in Sources */,
 				EB4B67F528D881D4002A4D8B /* Recurrence.swift in Sources */,
+				67BC05E82B2A13D2006C1E9A /* PinValidateView.swift in Sources */,
 				67BC05DA2B28EAD5006C1E9A /* SettingsView.swift in Sources */,
 				675E3FC22B27B345006E1150 /* SecondaryButton.swift in Sources */,
 				7E24D07528EC8B1A0085EF99 /* MonthChart.swift in Sources */,
@@ -433,6 +444,7 @@
 				EBA6850928D37EC2000C541E /* Categories.swift in Sources */,
 				675E3FC42B27B374006E1150 /* UIExtension.swift in Sources */,
 				EBA6850C28D38867000C541E /* Category.swift in Sources */,
+				67BC05E62B297853006C1E9A /* KeychainManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

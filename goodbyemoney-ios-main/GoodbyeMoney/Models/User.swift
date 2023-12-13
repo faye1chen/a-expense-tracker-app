@@ -46,6 +46,12 @@ class UserManager: ObservableObject {
     static let shared = UserManager()
     
     @Published var currentUser: User?
+    @Published var isAppPINEnabled = false
 
     private init() {}
+    
+    private func clearUserInfo() {
+        currentUser = nil
+        isAppPINEnabled = false
+    }
 }
