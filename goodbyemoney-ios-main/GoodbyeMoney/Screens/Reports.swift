@@ -10,7 +10,6 @@ struct Reports: View {
     @EnvironmentObject var realmManager: RealmManager
     @State private var period: Period = Period.week
     @State private var tabViewSelection = 0
-    @State private var expenses: [Expense] = []
     @State private var pagesRange = 0..<53
     @State private var showSaveAlert = false
 
@@ -54,8 +53,7 @@ struct Reports: View {
                 TabView(selection: $tabViewSelection) {
                     ForEach(pagesRange, id: \.self) { index in
                         VStack {
-                            PeriodChart(period: period, expenses: expenses, periodIndex: index)
-                                .environmentObject(realmManager)
+                            PeriodChart(period: period, periodIndex: index)
                         }
                     }
                 }

@@ -6,34 +6,35 @@
 //
 
 import SwiftUI
+import RealmSwift
+import AVKit
 
 struct ContentView: View {
-    @StateObject var realmManager = RealmManager()
-
+    @EnvironmentObject var realmManager: RealmManager
+    
     var body: some View {
         TabView {
-            Expenses(expenses: realmManager.expenses)
-                .environmentObject(realmManager)
+            Expenses()
                 .tabItem {
                     Label("Expenses", systemImage: "tray.and.arrow.up.fill")
                 }
             
             Reports()
-                .environmentObject(realmManager)
                 .tabItem {
                     Label("Reports", systemImage: "chart.bar.fill")
                 }
             
             Add()
-                .environmentObject(realmManager)
                 .tabItem {
                     Label("Add", systemImage: "plus")
                 }
             
-            Settings()
-                .environmentObject(realmManager)
+            SettingsView()
+//                .tabItem {
+//                    Label("Settings", systemImage: "gearshape.fill")
+//                }
                 .tabItem {
-                    Label("Settings", systemImage: "gearshape.fill")
+                    Label("SettingsView", systemImage: "gearshape.fill")
                 }
         }
     }
@@ -42,7 +43,5 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-            .environmentObject(RealmManager()) // 添加这一行
-
     }
 }

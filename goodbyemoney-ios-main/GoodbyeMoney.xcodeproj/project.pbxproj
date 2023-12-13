@@ -7,6 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		675E3FB92B27B274006E1150 /* WelcomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675E3FB52B27B274006E1150 /* WelcomView.swift */; };
+		675E3FBA2B27B274006E1150 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675E3FB62B27B274006E1150 /* SignUpView.swift */; };
+		675E3FBB2B27B274006E1150 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675E3FB72B27B274006E1150 /* SignInView.swift */; };
+		675E3FC12B27B345006E1150 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675E3FBF2B27B345006E1150 /* PrimaryButton.swift */; };
+		675E3FC22B27B345006E1150 /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675E3FC02B27B345006E1150 /* SecondaryButton.swift */; };
+		675E3FC42B27B374006E1150 /* UIExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675E3FC32B27B374006E1150 /* UIExtension.swift */; };
+		675E3FC62B27B3BA006E1150 /* RoundTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675E3FC52B27B3BA006E1150 /* RoundTextField.swift */; };
+		675E3FC82B27C890006E1150 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675E3FC72B27C890006E1150 /* User.swift */; };
+		675E3FCA2B27CDC3006E1150 /* checkInputs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675E3FC92B27CDC3006E1150 /* checkInputs.swift */; };
+		67BC05DA2B28EAD5006C1E9A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BC05D92B28EAD5006C1E9A /* SettingsView.swift */; };
+		67BC05DE2B28EB4F006C1E9A /* IconItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BC05DB2B28EB4F006C1E9A /* IconItemRow.swift */; };
+		67BC05DF2B28EB4F006C1E9A /* IconItemSwitchRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BC05DC2B28EB4F006C1E9A /* IconItemSwitchRow.swift */; };
+		67BC05E02B28EB4F006C1E9A /* ItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BC05DD2B28EB4F006C1E9A /* ItemRow.swift */; };
 		6784A57D2B292D0D009B3E51 /* CaptureUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6784A57C2B292D0D009B3E51 /* CaptureUIView.swift */; };
 		6784A57F2B292D3B009B3E51 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6784A57E2B292D3B009B3E51 /* UIImage+Extensions.swift */; };
 		7E24D07028EB32E10085EF99 /* PeriodOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E24D06F28EB32E10085EF99 /* PeriodOverview.swift */; };
@@ -35,7 +48,6 @@
 		EBA684FA28D3799C000C541E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBA684F928D3799C000C541E /* Preview Assets.xcassets */; };
 		EBA6850328D37A58000C541E /* Expenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA6850228D37A58000C541E /* Expenses.swift */; };
 		EBA6850528D37A6B000C541E /* Reports.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA6850428D37A6B000C541E /* Reports.swift */; };
-		EBA6850728D37D04000C541E /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA6850628D37D04000C541E /* Settings.swift */; };
 		EBA6850928D37EC2000C541E /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA6850828D37EC2000C541E /* Categories.swift */; };
 		EBA6850C28D38867000C541E /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA6850B28D38867000C541E /* Category.swift */; };
 /* End PBXBuildFile section */
@@ -44,8 +56,19 @@
 		0386E1ADA63C9B5BC7B32382 /* Pods-GoodbyeMoney.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoodbyeMoney.debug.xcconfig"; path = "Target Support Files/Pods-GoodbyeMoney/Pods-GoodbyeMoney.debug.xcconfig"; sourceTree = "<group>"; };
 		319E166A1DD883EF1631D1B1 /* Pods-GoodbyeMoney.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoodbyeMoney.release.xcconfig"; path = "Target Support Files/Pods-GoodbyeMoney/Pods-GoodbyeMoney.release.xcconfig"; sourceTree = "<group>"; };
 		5C97110712A3DBA5AF2E1A94 /* Pods_GoodbyeMoney.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoodbyeMoney.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6784A57C2B292D0D009B3E51 /* CaptureUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureUIView.swift; sourceTree = "<group>"; };
-		6784A57E2B292D3B009B3E51 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
+		675E3FB52B27B274006E1150 /* WelcomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomView.swift; sourceTree = "<group>"; };
+		675E3FB62B27B274006E1150 /* SignUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		675E3FB72B27B274006E1150 /* SignInView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		675E3FBF2B27B345006E1150 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
+		675E3FC02B27B345006E1150 /* SecondaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButton.swift; sourceTree = "<group>"; };
+		675E3FC32B27B374006E1150 /* UIExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtension.swift; sourceTree = "<group>"; };
+		675E3FC52B27B3BA006E1150 /* RoundTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundTextField.swift; sourceTree = "<group>"; };
+		675E3FC72B27C890006E1150 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		675E3FC92B27CDC3006E1150 /* checkInputs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = checkInputs.swift; sourceTree = "<group>"; };
+		67BC05D92B28EAD5006C1E9A /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		67BC05DB2B28EB4F006C1E9A /* IconItemRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconItemRow.swift; sourceTree = "<group>"; };
+		67BC05DC2B28EB4F006C1E9A /* IconItemSwitchRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconItemSwitchRow.swift; sourceTree = "<group>"; };
+		67BC05DD2B28EB4F006C1E9A /* ItemRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemRow.swift; sourceTree = "<group>"; };
 		67CADDF72B2405DD006E6873 /* release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = release.xcconfig; sourceTree = "<group>"; };
 		67CADDF82B24060D006E6873 /* debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = debug.xcconfig; sourceTree = "<group>"; };
 		7E24D06F28EB32E10085EF99 /* PeriodOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodOverview.swift; sourceTree = "<group>"; };
@@ -76,7 +99,6 @@
 		EBA684F928D3799C000C541E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		EBA6850228D37A58000C541E /* Expenses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expenses.swift; sourceTree = "<group>"; };
 		EBA6850428D37A6B000C541E /* Reports.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reports.swift; sourceTree = "<group>"; };
-		EBA6850628D37D04000C541E /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		EBA6850828D37EC2000C541E /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
 		EBA6850B28D38867000C541E /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		EBAA375328DB1BF700A38587 /* env.sample.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = env.sample.sh; sourceTree = "<group>"; };
@@ -124,6 +146,13 @@
 		EB4B67E628D86FFE002A4D8B /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				67BC05DB2B28EB4F006C1E9A /* IconItemRow.swift */,
+				67BC05DC2B28EB4F006C1E9A /* IconItemSwitchRow.swift */,
+				67BC05DD2B28EB4F006C1E9A /* ItemRow.swift */,
+				675E3FC52B27B3BA006E1150 /* RoundTextField.swift */,
+				675E3FC32B27B374006E1150 /* UIExtension.swift */,
+				675E3FBF2B27B345006E1150 /* PrimaryButton.swift */,
+				675E3FC02B27B345006E1150 /* SecondaryButton.swift */,
 				EB97131628DDA56700AB19AE /* Charts */,
 				EB4B67E728D8700E002A4D8B /* TotalCurrencyBox.swift */,
 				EB4B67E928D87376002A4D8B /* ExpensesList.swift */,
@@ -150,6 +179,7 @@
 				EB4B67F628D887B9002A4D8B /* ExpensesUtils.swift */,
 				EB4B67F828D88A1E002A4D8B /* DateUtils.swift */,
 				EB97131D28DDE96900AB19AE /* Color.swift */,
+				675E3FC92B27CDC3006E1150 /* checkInputs.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -215,9 +245,12 @@
 		EBA6850028D37A12000C541E /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				67BC05D92B28EAD5006C1E9A /* SettingsView.swift */,
+				675E3FB72B27B274006E1150 /* SignInView.swift */,
+				675E3FB62B27B274006E1150 /* SignUpView.swift */,
+				675E3FB52B27B274006E1150 /* WelcomView.swift */,
 				EBA6850228D37A58000C541E /* Expenses.swift */,
 				EBA6850428D37A6B000C541E /* Reports.swift */,
-				EBA6850628D37D04000C541E /* Settings.swift */,
 				EBA6850828D37EC2000C541E /* Categories.swift */,
 				EB510B7328D4CC1900D3C07B /* Add.swift */,
 			);
@@ -231,6 +264,7 @@
 				EB4B67EB28D8759C002A4D8B /* Expense.swift */,
 				EB4B67F428D881D4002A4D8B /* Recurrence.swift */,
 				EB97131428DDA23C00AB19AE /* Period.swift */,
+				675E3FC72B27C890006E1150 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -365,7 +399,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67BC05DE2B28EB4F006C1E9A /* IconItemRow.swift in Sources */,
 				EB4B67EC28D8759C002A4D8B /* Expense.swift in Sources */,
+				675E3FCA2B27CDC3006E1150 /* checkInputs.swift in Sources */,
 				7E24D07028EB32E10085EF99 /* PeriodOverview.swift in Sources */,
 				EBA6850328D37A58000C541E /* Expenses.swift in Sources */,
 				6784A57F2B292D3B009B3E51 /* UIImage+Extensions.swift in Sources */,
@@ -373,25 +409,35 @@
 				EBA684F528D3799B000C541E /* ContentView.swift in Sources */,
 				7E24D07728EC8B6C0085EF99 /* YearChart.swift in Sources */,
 				EBA684F328D3799B000C541E /* GoodbyeMoneyApp.swift in Sources */,
+				675E3FC62B27B3BA006E1150 /* RoundTextField.swift in Sources */,
 				EB97131E28DDE96900AB19AE /* Color.swift in Sources */,
+				675E3FBB2B27B274006E1150 /* SignInView.swift in Sources */,
 				EBA6850528D37A6B000C541E /* Reports.swift in Sources */,
 				EB510B7728D4D51E00D3C07B /* KeyboardUtils.swift in Sources */,
 				EB4B67F128D87B03002A4D8B /* Double.swift in Sources */,
+				67BC05E02B28EB4F006C1E9A /* ItemRow.swift in Sources */,
 				EB4B67F928D88A1E002A4D8B /* DateUtils.swift in Sources */,
-				EBA6850728D37D04000C541E /* Settings.swift in Sources */,
 				EB510B7428D4CC1900D3C07B /* Add.swift in Sources */,
+				675E3FC12B27B345006E1150 /* PrimaryButton.swift in Sources */,
+				675E3FB92B27B274006E1150 /* WelcomView.swift in Sources */,
 				EB4B67F728D887B9002A4D8B /* ExpensesUtils.swift in Sources */,
 				EB4B67F528D881D4002A4D8B /* Recurrence.swift in Sources */,
+				67BC05DA2B28EAD5006C1E9A /* SettingsView.swift in Sources */,
+				675E3FC22B27B345006E1150 /* SecondaryButton.swift in Sources */,
 				7E24D07528EC8B1A0085EF99 /* MonthChart.swift in Sources */,
 				EB97131528DDA23C00AB19AE /* Period.swift in Sources */,
 				EB97131328DDA22F00AB19AE /* PeriodChart.swift in Sources */,
+				675E3FC82B27C890006E1150 /* User.swift in Sources */,
 				EB97131C28DDB21500AB19AE /* WeekChart.swift in Sources */,
 				EB97132028DE03CF00AB19AE /* RealmManager.swift in Sources */,
 				EB4B67E828D8700E002A4D8B /* TotalCurrencyBox.swift in Sources */,
 				6784A57D2B292D0D009B3E51 /* CaptureUIView.swift in Sources */,
 				EB4B67EA28D87376002A4D8B /* ExpensesList.swift in Sources */,
+				675E3FBA2B27B274006E1150 /* SignUpView.swift in Sources */,
 				EB97131828DDA61600AB19AE /* ExpensesBreakdown.swift in Sources */,
+				67BC05DF2B28EB4F006C1E9A /* IconItemSwitchRow.swift in Sources */,
 				EBA6850928D37EC2000C541E /* Categories.swift in Sources */,
+				675E3FC42B27B374006E1150 /* UIExtension.swift in Sources */,
 				EBA6850C28D38867000C541E /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

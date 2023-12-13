@@ -15,6 +15,7 @@ class Expense: Object, ObjectKeyIdentifiable {
     @Persisted var date: Date
     @Persisted var note: String?
     @Persisted var recurrence: Recurrence? = Recurrence.none
+    @Persisted var userId: String
     
     convenience init(amount: Double, category: Category, date: Date, note: String? = nil, recurrence: Recurrence? = nil) {
         self.init()
@@ -23,6 +24,7 @@ class Expense: Object, ObjectKeyIdentifiable {
         self.date = date
         self.note = note
         self.recurrence = recurrence
+        self.userId = (UserManager.shared.currentUser?.userId.stringValue)!
     }
     
     var dayInWeek: String {

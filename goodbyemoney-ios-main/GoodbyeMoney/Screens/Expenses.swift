@@ -6,19 +6,22 @@
 //
 
 import SwiftUI
+import RealmSwift
 
 struct Expenses: View {
     @EnvironmentObject var realmManager: RealmManager
-    var expenses: [Expense]
     
     @State private var totalExpenses: Double = 0
     @State private var filteredExpenses: [Expense] = []
     @State private var searchQuery = ""
     @State private var timeFilter = Period.week
+    
+    @ObservedResults(Expense.self, filter: User.userIdPredicate) var expenses
+    
     let columns: [GridItem] = Array(repeating: .init(.adaptive(minimum: 96), spacing: 16), count: 3)
     
     func reloadData() {
-        filteredExpenses = filterExpensesInPeriod(period: timeFilter, expenses: realmManager.expenses, periodIndex: 0).expenses
+        filteredExpenses = filterExpensesInPeriod(period: timeFilter, expenses: Array(expenses), periodIndex: 0).expenses
         
         totalExpenses = 0
         
@@ -78,6 +81,6 @@ struct Expenses: View {
 
 struct Expenses_Previews: PreviewProvider {
     static var previews: some View {
-        Expenses(expenses: RealmManager().expenses)
+        Expenses()
     }
 }

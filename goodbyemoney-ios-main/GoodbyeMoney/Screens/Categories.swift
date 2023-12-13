@@ -15,28 +15,24 @@ struct Categories: View {
     @State private var newCategoryName: String = ""
     @State private var newCategoryColor = Color(.sRGB, red: 0.98, green: 0.9, blue: 0.2)
     
-    func handleSubmit() {
+    @ObservedResults(Category.self, filter: User.userIdPredicate) var categories
+    
+    func handleAddCategory() {
+        // TODO: 输入校验
         if newCategoryName.count > 0 {
-            self.realmManager.submitCategory(Category(
+            $categories.append(Category(
                 name: newCategoryName,
                 color: newCategoryColor
             ))
-            newCategoryName = ""
         } else {
             invalidDataAlertShowing = true
-        }
-    }
-    
-    func handleDelete(at offsets: IndexSet) {
-        if offsets.first != nil {
-            realmManager.deleteCategory(category: realmManager.categories[offsets.first!])
         }
     }
     
     var body: some View {
         VStack {
             List {
-                ForEach(realmManager.categories, id: \.name) { category in
+                ForEach(categories, id: \._id) { category in
                     HStack {
                         Circle()
                             .frame(width: 12)
@@ -44,7 +40,7 @@ struct Categories: View {
                         Text(category.name)
                     }
                 }
-                .onDelete(perform: handleDelete)
+                .onDelete(perform: $categories.remove)
             }
             
             Spacer()
@@ -55,12 +51,12 @@ struct Categories: View {
                     .accessibilityLabel("")
                 
                 ZStack(alignment: .trailing) {
-
+                    
                     TextField("New category", text: $newCategoryName)
                         .textFieldStyle(.roundedBorder)
                         .submitLabel(.done)
                         .onSubmit {
-                            handleSubmit()
+                            handleAddCategory()
                         }
                     
                     if newCategoryName.count > 0 {
@@ -76,7 +72,7 @@ struct Categories: View {
                 }
                 
                 Button {
-                    handleSubmit()
+                    handleAddCategory()
                 } label: {
                     Label("Submit", systemImage: "paperplane.fill")
                         .labelStyle(.iconOnly)
@@ -94,17 +90,9 @@ struct Categories: View {
             .padding(.horizontal, 16)
             .padding(.bottom, 16)
             .navigationTitle("Categories")
-        }
-        .padding(.top, 16)
-        .toolbar {
-            ToolbarItemGroup(placement: .keyboard) {
-                Spacer()
-                Button {
-                    hideKeyboard()
-                } label: {
-                    Label("Dismiss", systemImage: "keyboard.chevron.compact.down")
-                }
-            }
+        }.onAppear(){
+//            print((UserManager.shared.currentUser?.userId.stringValue)!)
+//            print(categories)
         }
     }
 }

@@ -10,19 +10,21 @@ import RealmSwift
 
 class RealmManager: ObservableObject {
     private(set) var localRealm: Realm?
-    @Published var expenses: [Expense] = []
-    @Published var categories: [Category] = []
-    
+
     init() {
         openRealm()
-        
-        loadExpenses()
-        loadCategories()
     }
     
     func openRealm() {
         do {
-            let config = Realm.Configuration(schemaVersion: 1)
+            let config = Realm.Configuration(
+                schemaVersion: 3, // 更新架构版本
+                migrationBlock: { migration, oldSchemaVersion in
+                     if oldSchemaVersion < 3 {
+                         // 迁移逻辑
+                         // 因为这里是添加属性，所以可能不需要写具体的迁移代码
+                     }
+                })
             
             Realm.Configuration.defaultConfiguration = config
             
@@ -32,72 +34,74 @@ class RealmManager: ObservableObject {
         }
     }
     
-    func loadExpenses() {
-        if let localRealm = localRealm {
-            let allExpenses = localRealm.objects(Expense.self).sorted(byKeyPath: "date")
-            
-            expenses = []
-            
-            allExpenses.forEach { expense in
-                expenses.append(expense)
-            }
-        }
-    }
-    
-    func submitExpense(_ expense: Expense) {
+    func deleteAllData() {
         if let localRealm = localRealm {
             do {
                 try localRealm.write {
-                    localRealm.add(expense)
+                    localRealm.deleteAll()
                     
-                    loadExpenses()
-                    print("Expense submitted to Realm!", expense)
+                    print("Delete Successfully.")
                 }
             } catch {
-                print("Error submitting expense to Realm: \(error)")
+                print("Error deleting all data: \(error)")
             }
         }
+        
+        
     }
     
-    func loadCategories() {
-        if let localRealm = localRealm {
-            let allCategories = localRealm.objects(Category.self)
-            
-            categories = []
-            
-            allCategories.forEach { category in
-                categories.append(category)
-            }
+    func getCateByCateId(_ selectedCategoryId : ObjectId) -> Category? {
+        guard let localRealm = localRealm else {
+            print("Realm not initialized")
+            return nil
         }
+        
+        let cate = localRealm.objects(Category.self).filter("_id == %@", selectedCategoryId)
+        
+        return cate.first
     }
     
-    func submitCategory(_ category: Category) {
-        if let localRealm = localRealm {
-            do {
-                try localRealm.write {
-                    localRealm.add(category)
-                    
-                    loadCategories()
-                    print("Category submitted to Realm!", category)
-                }
-            } catch {
-                print("Error submitting category to Realm: \(error)")
-            }
-        }
-    }
-    
-    func deleteCategory(category: Category) {
+    func signUpNewUser(_ user: User) {
         if let localRealm = localRealm {
             do {
                 try localRealm.write {
-                    localRealm.delete(category)
+                    localRealm.add(user)
                     
-                    loadCategories()
-                    print("Category deleted from Realm!", category)
+                    print("User submitted to Realm!", user)
                 }
             } catch {
-                print("Error deleting category to Realm: \(error)")
+                print("Error submitting user to Realm: \(error)")
             }
         }
+    }
+    
+    func signInUser(_ email : String, _ password : String) -> User? {
+        guard let localRealm = localRealm else {
+            print("Realm not initialized")
+            return nil
+        }
+        
+        let users = localRealm.objects(User.self).filter("email == %@", email)
+        if let user = users.first {
+            if !user.validatePassword(password) {
+                print("Password error")
+                return nil
+            } else {
+                return user
+            }
+        } else {
+            print("No user found with the given email")
+            return nil
+        }
+    }
+    
+    func getUserByEmail(_ email: String) -> User? {
+        guard let localRealm = localRealm else {
+            print("Realm not initialized")
+            return nil
+        }
+        
+        let users = localRealm.objects(User.self).filter("email == %@", email)
+        return users.first
     }
 }
