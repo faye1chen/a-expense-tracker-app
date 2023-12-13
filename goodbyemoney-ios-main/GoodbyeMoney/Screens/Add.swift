@@ -20,6 +20,8 @@ struct Add: View {
     @State private var recurrence = Recurrence.none
     @State private var date = Date()
     @State private var note = ""
+    @State private var showAlert = false
+
     
     @ObservedResults(Category.self, filter: User.userIdPredicate) var categories
     @ObservedResults(Expense.self, filter: User.userIdPredicate) var expenses
@@ -37,8 +39,25 @@ struct Add: View {
         return min...max
     }
     
+//    func handleCreate() {
+//        $expenses.append(Expense(amount: Double(self.amount) ?? 0.0, category: realmManager.getCateByCateId(selectedCategoryId)!, date: self.date, note: self.note, recurrence: self.recurrence))
+//
+//        print(expenses)
+//
+//        self.amount = ""
+//        self.recurrence = Recurrence.none
+//        self.date = Date()
+//        self.note = ""
+//        hideKeyboard()
+//    }
+    
     func handleCreate() {
-        $expenses.append(Expense(amount: Double(self.amount) ?? 0.0, category: realmManager.getCateByCateId(selectedCategoryId)!, date: self.date, note: self.note, recurrence: self.recurrence))
+        guard let amountValue = Double(self.amount), amountValue > 0 else {
+            self.showAlert = true
+            return
+        }
+
+        $expenses.append(Expense(amount: amountValue, category: realmManager.getCateByCateId(selectedCategoryId)!, date: self.date, note: self.note, recurrence: self.recurrence))
         
         print(expenses)
 
@@ -48,6 +67,7 @@ struct Add: View {
         self.note = ""
         hideKeyboard()
     }
+
     
     var body: some View {
         NavigationView {
@@ -137,6 +157,14 @@ struct Add: View {
 //            }
             .padding(.top, 16)
             .navigationTitle("Add")
+            
+            .alert(isPresented: $showAlert) {
+                Alert(
+                    title: Text("Invalid Amount"),
+                    message: Text("Please enter a valid amount greater than zero."),
+                    dismissButton: .default(Text("OK"))
+                )
+            }
         }
         .onAppear {
             onAppear()
