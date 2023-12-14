@@ -91,8 +91,11 @@ struct Categories: View {
             .padding(.bottom, 16)
             .navigationTitle("Categories")
         }.onAppear(){
-//            print((UserManager.shared.currentUser?.userId.stringValue)!)
-//            print(categories)
+            print((UserManager.shared.currentUser?.userId.stringValue)!)
+            print(categories)
+        }
+        .onChange(of: UserManager.shared.currentUser) { _ in
+            
         }
     }
 }

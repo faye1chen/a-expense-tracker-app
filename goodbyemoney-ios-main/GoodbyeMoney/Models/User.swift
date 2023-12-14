@@ -10,8 +10,6 @@ import RealmSwift
 import CommonCrypto
 
 class User: Object, ObjectKeyIdentifiable {
-    static var userIdPredicate =  NSPredicate(format: "userId == %@", (UserManager.shared.currentUser?.userId.stringValue)!)
-    
     @Persisted(primaryKey: true) var userId: ObjectId
     @Persisted var email: String
     @Persisted var hashedPassword: String
@@ -39,6 +37,16 @@ class User: Object, ObjectKeyIdentifiable {
 
     func validatePassword(_ password: String) -> Bool {
         return sha256(password) == hashedPassword
+    }
+}
+
+extension User {
+    static var userIdPredicate: NSPredicate {
+        if let userId = UserManager.shared.currentUser?.userId {
+            return NSPredicate(format: "userId == %@", userId.stringValue)
+        } else {
+            return NSPredicate(value: false) // 当没有用户时返回一个始终为假的谓词
+        }
     }
 }
 

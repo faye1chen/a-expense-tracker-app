@@ -21,6 +21,9 @@ struct Expenses: View {
     let columns: [GridItem] = Array(repeating: .init(.adaptive(minimum: 96), spacing: 16), count: 3)
     
     func reloadData() {
+        print(UserManager.shared.currentUser!.userId)
+        print(expenses)
+        
         filteredExpenses = filterExpensesInPeriod(period: timeFilter, expenses: Array(expenses), periodIndex: 0).expenses
         
         // 根据searchQuery过滤expenses
