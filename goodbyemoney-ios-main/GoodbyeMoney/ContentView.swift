@@ -44,6 +44,7 @@ struct ContentView: View {
                 // 您的PIN验证视图
                 PinValidateView()
             }
+            .navigationBarBackButtonHidden(true)
         
     }
 }

@@ -8,6 +8,7 @@ import SwiftUI
 import RealmSwift
 
 struct Categories: View {
+    
     @EnvironmentObject var realmManager: RealmManager
     
     @State private var invalidDataAlertShowing = false
@@ -15,6 +16,11 @@ struct Categories: View {
     @State private var newCategoryColor = Color(.sRGB, red: 0.98, green: 0.9, blue: 0.2)
     
     @ObservedResults(Category.self, filter: User.userIdPredicate) var categories
+    @ObservedResults(Expense.self, filter: User.userIdPredicate) var expenses
+    
+    @State private var showAlert = false
+    @State private var alertMsg = ""
+    
     
     func handleAddCategory() {
         // TODO: 输入校验
@@ -25,6 +31,21 @@ struct Categories: View {
             ))
         } else {
             invalidDataAlertShowing = true
+        }
+    }
+    
+    func handleDelete(at offsets: IndexSet) {
+        for index in offsets {
+            let categoryToDelete = categories[index]
+            for expense in expenses {
+                if expense.category == categoryToDelete {
+                    showAlert = true
+                    alertMsg = "Still in use."
+                    return
+                }
+            }
+            
+            $categories.remove(atOffsets: offsets)
         }
     }
     
@@ -39,7 +60,7 @@ struct Categories: View {
                         Text(category.name)
                     }
                 }
-                .onDelete(perform: $categories.remove)
+                .onDelete(perform: handleDelete)
             }
             
             Spacer()
@@ -89,12 +110,18 @@ struct Categories: View {
             .padding(.horizontal, 16)
             .padding(.bottom, 16)
             .navigationTitle("Categories")
-        }.onAppear(){
-            print((UserManager.shared.currentUser?.userId.stringValue)!)
-            print(categories)
-        }
-        .onChange(of: UserManager.shared.currentUser) { _ in
             
+            .alert(isPresented: $showAlert) {
+                Alert(
+                    title: Text("Info"),
+                    message: Text(alertMsg),
+                    dismissButton: .default(Text("OK"))
+                )
+            }
+            
+        }.onAppear(){
+//            print((UserManager.shared.currentUser?.userId.stringValue)!)
+//            print(categories)
         }
     }
 }

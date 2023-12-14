@@ -26,10 +26,6 @@ struct WelcomView: View {
                     .padding(.bottom, .bottomInsets)
                 }
             }
-            .navigationTitle("")
-            .navigationBarHidden(true)
-            .navigationBarBackButtonHidden(true)
-            .ignoresSafeArea()
             .navigationDestination(isPresented: $showSignIn) {
                 SignInView()
             }

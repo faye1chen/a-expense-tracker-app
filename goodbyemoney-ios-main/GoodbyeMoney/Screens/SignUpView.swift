@@ -61,7 +61,6 @@ struct SignUpView: View {
     }
     
     var body: some View {
-        NavigationStack {
             ZStack{
                 Image("background")
                     .resizable()
@@ -121,14 +120,10 @@ struct SignUpView: View {
                     }
                 )
             }
-            .navigationTitle("")
-            .navigationBarHidden(true)
             .navigationBarBackButtonHidden(true)
-            .ignoresSafeArea()
             .navigationDestination(isPresented: $showSignIn) {
                 SignInView()
             }
-        }
     }
 }
 

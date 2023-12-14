@@ -27,10 +27,10 @@ struct ExpenseDetailView: View {
     @ObservedResults(Category.self, filter: User.userIdPredicate) var categories
     @ObservedResults(Expense.self, filter: User.userIdPredicate) var expenses
     
-    @Binding var expense: Expense?
+    @Binding var expense : Expense?
+    @Binding var editSucc: Bool?
     
     func onAppear() {
-//        print(expense!)
         
         self.amount = String(expense!.amount)
         self.recurrence = expense!.recurrence!
@@ -74,6 +74,8 @@ struct ExpenseDetailView: View {
 
         $expenses.append(Expense(amount: Double(self.amount)!, category: realmManager.getCateByCateId(selectedCategoryId)!, date: self.date, note: self.note, recurrence: self.recurrence))
 
+        editSucc = true
+        
         self.amount = ""
         self.recurrence = Recurrence.none
         self.date = Date()

@@ -25,11 +25,11 @@ struct SettingsView: View {
     
     var body: some View {
         NavigationView {
-            ScrollView {
+            VStack {
                 VStack(spacing: 4){
                     Image("u1")
                         .resizable()
-                        .frame(width: 70, height: 70)
+                        .frame(width: 120, height: 120)
                     Spacer()
                         .frame(height: 15)
                     Text("User")
@@ -40,19 +40,16 @@ struct SettingsView: View {
                         .font(.customfont(.medium, fontSize: 12))
                         .accentColor(.gray30)
                 }
-                .padding(.top, .topInsets + 200)
+                .padding(.top, 30)
+                
                 
                 VStack(alignment: .leading, spacing: 8){
-                    Text("General")
-                        .font(.customfont(.semibold, fontSize: 14))
-                        .padding(.top, 40)
-                    
                     VStack{
                         IconItemRow(icon: "category", title: "Category", value: "", onClick: {
                             showCategories.toggle()
                         })
                         
-                        IconItemRow(icon: "category", title: "App Pin", value: "") {
+                        IconItemRow(icon: "p", title: "App Pin", value: "") {
                             pinSetup.toggle()
                         }
                         
@@ -66,7 +63,7 @@ struct SettingsView: View {
                         
                     }
                     .padding(.vertical, 10)
-                    .background(Color.gray60.opacity( 0.2))
+                    .background(Color.gray.opacity( 0.20))
                     .overlay {
                         RoundedRectangle(cornerRadius:  16)
                             .stroke( Color.gray70 , lineWidth: 1)
@@ -74,11 +71,13 @@ struct SettingsView: View {
                     .cornerRadius(16)
                 }
                 .foregroundColor(.white)
+                .padding(.top, 30)
                 
+                Spacer()
             }
             .padding(.horizontal, 20)
             .navigationTitle("Settings")
-            .ignoresSafeArea()
+        
             .navigationDestination(isPresented: $showCategories) {
                 Categories()
             }
@@ -91,9 +90,7 @@ struct SettingsView: View {
             .navigationDestination(isPresented: $showAboutUs) {
                 AboutUsView()
             }
-
         }
-        
     }
 }
 

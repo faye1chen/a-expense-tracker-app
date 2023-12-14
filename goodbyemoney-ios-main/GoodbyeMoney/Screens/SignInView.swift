@@ -19,11 +19,11 @@ struct SignInView: View {
     @State private var alertMessage = ""
     
     func handleSignIn() {
-//        guard validateInputs() else {
-//            return
-//        }
-        txtEmail = "Alicelmx@126.com"
-        txtPassword = "lmx1994.LMX@"
+        guard validateInputs() else {
+            return
+        }
+//        txtEmail = "Alicelmx@126.com"
+//        txtPassword = "lmx1994.LMX@"
         
 //        txtEmail = "Xuyi@gmail.com"
 //        txtPassword = "lmx1994.LMX@"
@@ -66,7 +66,7 @@ struct SignInView: View {
     }
     
     var body: some View {
-        NavigationStack {
+
             ZStack{
                 Image("background")
                     .resizable()
@@ -117,10 +117,10 @@ struct SignInView: View {
                     }
                 )
             }
-            .navigationTitle("")
-            .navigationBarHidden(true)
+            .onAppear(){
+                // realmManager.deleteAllData()
+            }
             .navigationBarBackButtonHidden(true)
-            .ignoresSafeArea()
             .navigationDestination(isPresented: $showHomePage) {
                 ContentView()
             }
@@ -129,7 +129,7 @@ struct SignInView: View {
             }
 
         }
-    }
+    
 }
 
 struct SignInView_Previews: PreviewProvider {
