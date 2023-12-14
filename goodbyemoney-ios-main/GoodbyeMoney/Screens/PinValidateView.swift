@@ -130,6 +130,11 @@ struct PinValidateView: View {
     }
 }
 
-#Preview {
-    PinValidateView()
+//#Preview {
+//    PinValidateView()
+//}
+struct PinValidateView_Previews: PreviewProvider {
+    static var previews: some View {
+        PinValidateView()
+    }
 }

@@ -1,8 +1,6 @@
 //
 //  IconItemRow.swift
-//  Trackizer
 //
-//  Created by CodeForAny on 16/07/23.
 //
 
 import SwiftUI

@@ -1,8 +1,6 @@
 //
 //  SettingsView.swift
-//  Trackizer
 //
-//  Created by CodeForAny on 16/07/23.
 //
 
 import SwiftUI
@@ -13,6 +11,7 @@ struct SettingsView: View {
     @State var showCategories: Bool = false
     @State var showLogin: Bool = false
     @State var pinSetup: Bool = false
+    @State var showAboutUs: Bool = false
     @State var isAppPINEnabled: Bool = false {
         didSet {
             // 在这里添加当开关状态改变时的逻辑
@@ -58,7 +57,7 @@ struct SettingsView: View {
                         }
                         
                         IconItemRow(icon: "aboutus", title: "About Us", value: "", onClick: {
-                            showCategories.toggle()
+                            showAboutUs.toggle()
                         })
                         
                         IconItemRow(icon: "logout", title: "Log Out", value: "", onClick: {
@@ -89,6 +88,10 @@ struct SettingsView: View {
             .navigationDestination(isPresented: $pinSetup) {
                 PinSetupView()
             }
+            .navigationDestination(isPresented: $showAboutUs) {
+                AboutUsView()
+            }
+
         }
         
     }
