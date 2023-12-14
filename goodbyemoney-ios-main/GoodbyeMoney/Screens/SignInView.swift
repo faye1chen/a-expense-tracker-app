@@ -19,11 +19,11 @@ struct SignInView: View {
     @State private var alertMessage = ""
     
     func handleSignIn() {
-        guard validateInputs() else {
-            return
-        }
-//        txtEmail = "Alicelmx@126.com"
-//        txtPassword = "lmx1994.LMX@"
+//        guard validateInputs() else {
+//            return
+//        }
+        txtEmail = "Alicelmx@126.com"
+        txtPassword = "lmx1994.LMX@"
         
 //        txtEmail = "Xuyi@gmail.com"
 //        txtPassword = "lmx1994.LMX@"

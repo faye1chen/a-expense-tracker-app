@@ -55,7 +55,8 @@ class UserManager: ObservableObject {
     
     @Published var currentUser: User?
     @Published var isAppPINEnabled = false
-
+//    @Published var isLoggedIn: Bool = false
+    
     private init() {}
     
     private func clearUserInfo() {

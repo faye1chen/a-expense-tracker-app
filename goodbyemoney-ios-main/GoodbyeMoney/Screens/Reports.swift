@@ -13,7 +13,6 @@ struct Reports: View {
     @State private var pagesRange = 0..<53
     @State private var showSaveAlert = false
 
-    
     func setPagesRange() {
         switch self.period {
         case .day:
@@ -107,11 +106,11 @@ struct Reports: View {
     }
 }
 
-struct Reports_Previews: PreviewProvider {
-    static var previews: some View {
-        Reports()
-    }
-}
+//struct Reports_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Reports()
+//    }
+//}
 
 // 辅助类，用于处理图片保存回调
 class ImageSaver: NSObject {

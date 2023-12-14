@@ -1,14 +1,15 @@
 //
-//  Add.swift
+//  ExpenseDetailView.swift
 //  GoodbyeMoney
 //
+//  Created by 李明霞 on 12/14/23.
 //
 
 import SwiftUI
 import RealmSwift
 import AVKit
 
-struct Add: View {
+struct ExpenseDetailView: View {
     @EnvironmentObject var realmManager: RealmManager
     
     @State private var selectedCategory: Category = Category(name: "Create a category first", color: Color.clear)
@@ -26,11 +27,17 @@ struct Add: View {
     @ObservedResults(Category.self, filter: User.userIdPredicate) var categories
     @ObservedResults(Expense.self, filter: User.userIdPredicate) var expenses
     
+    @Binding var expense: Expense?
+    
     func onAppear() {
-        if categories.count > 0 {
-            self.selectedCategory = categories[0]
-            self.selectedCategoryId = selectedCategory._id
-        }
+//        print(expense!)
+        
+        self.amount = String(expense!.amount)
+        self.recurrence = expense!.recurrence!
+        self.date = expense!.date
+        self.note = expense!.note ?? ""
+        self.selectedCategory = expense!.category!
+        self.selectedCategoryId = expense!.category!._id
     }
     
     var dateClosedRange: ClosedRange<Date> {
@@ -38,7 +45,6 @@ struct Add: View {
         let max = Date()
         return min...max
     }
-    
     func checkInput() -> Bool {
         guard !isEmptyInput(self.amount) && !isEmptyInput(self.note) else {
             alertMsg = "Empty Input"
@@ -65,19 +71,13 @@ struct Add: View {
         guard checkInput() else {
             return
         }
-        
+
         $expenses.append(Expense(amount: Double(self.amount)!, category: realmManager.getCateByCateId(selectedCategoryId)!, date: self.date, note: self.note, recurrence: self.recurrence))
-        
-        print(expenses)
-        
-        alertMsg = "Successfully"
-        self.showAlert = true
 
         self.amount = ""
         self.recurrence = Recurrence.none
         self.date = Date()
         self.note = ""
-        
         hideKeyboard()
     }
 
@@ -147,7 +147,7 @@ struct Add: View {
                 Button {
                     handleCreate()
                 } label: {
-                    Label("Submit expense", systemImage: "plus")
+                    Label("Edit Expense", systemImage: "plus")
                         .labelStyle(.titleOnly)
                         .padding(.horizontal, 44)
                         .padding(.vertical, 12)
@@ -158,8 +158,9 @@ struct Add: View {
                 
                 Spacer()
             }
+
             .padding(.top, 16)
-            .navigationTitle("Add")
+            .navigationTitle("Edit")
             
             .alert(isPresented: $showAlert) {
                 Alert(
@@ -175,8 +176,6 @@ struct Add: View {
     }
 }
 
-struct Add_Previews: PreviewProvider {
-    static var previews: some View {
-        Add()
-    }
-}
+//#Preview {
+//    ExpenseDetailView()
+//}

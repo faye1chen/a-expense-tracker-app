@@ -28,6 +28,8 @@
 		67BC05E42B296D10006C1E9A /* PinSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BC05E32B296D10006C1E9A /* PinSetupView.swift */; };
 		67BC05E62B297853006C1E9A /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BC05E52B297853006C1E9A /* KeychainManager.swift */; };
 		67BC05E82B2A13D2006C1E9A /* PinValidateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BC05E72B2A13D2006C1E9A /* PinValidateView.swift */; };
+		67FF6F8B2B2B78E300BBD491 /* ExpenseDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FF6F8A2B2B78E300BBD491 /* ExpenseDetailView.swift */; };
+		67FF6F8D2B2B80D500BBD491 /* OptionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FF6F8C2B2B80D500BBD491 /* OptionSheet.swift */; };
 		7E24D07028EB32E10085EF99 /* PeriodOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E24D06F28EB32E10085EF99 /* PeriodOverview.swift */; };
 		7E24D07528EC8B1A0085EF99 /* MonthChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E24D07428EC8B1A0085EF99 /* MonthChart.swift */; };
 		7E24D07728EC8B6C0085EF99 /* YearChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E24D07628EC8B6C0085EF99 /* YearChart.swift */; };
@@ -83,6 +85,8 @@
 		67BC05E72B2A13D2006C1E9A /* PinValidateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinValidateView.swift; sourceTree = "<group>"; };
 		67CADDF72B2405DD006E6873 /* release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = release.xcconfig; sourceTree = "<group>"; };
 		67CADDF82B24060D006E6873 /* debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = debug.xcconfig; sourceTree = "<group>"; };
+		67FF6F8A2B2B78E300BBD491 /* ExpenseDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseDetailView.swift; sourceTree = "<group>"; };
+		67FF6F8C2B2B80D500BBD491 /* OptionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionSheet.swift; sourceTree = "<group>"; };
 		7E24D06F28EB32E10085EF99 /* PeriodOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodOverview.swift; sourceTree = "<group>"; };
 		7E24D07428EC8B1A0085EF99 /* MonthChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthChart.swift; sourceTree = "<group>"; };
 		7E24D07628EC8B6C0085EF99 /* YearChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearChart.swift; sourceTree = "<group>"; };
@@ -172,6 +176,7 @@
 				EB4B67E928D87376002A4D8B /* ExpensesList.swift */,
 				EB4B67FA28D8A504002A4D8B /* Tag.swift */,
 				7E24D06F28EB32E10085EF99 /* PeriodOverview.swift */,
+				67FF6F8C2B2B80D500BBD491 /* OptionSheet.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -269,6 +274,7 @@
 				67BC05E32B296D10006C1E9A /* PinSetupView.swift */,
 				67BC05E72B2A13D2006C1E9A /* PinValidateView.swift */,
 				674A6D1D2B2A6A3300E1E145 /* AboutUsView.swift */,
+				67FF6F8A2B2B78E300BBD491 /* ExpenseDetailView.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -418,6 +424,7 @@
 				67BC05DE2B28EB4F006C1E9A /* IconItemRow.swift in Sources */,
 				EB4B67EC28D8759C002A4D8B /* Expense.swift in Sources */,
 				675E3FCA2B27CDC3006E1150 /* checkInputs.swift in Sources */,
+				67FF6F8B2B2B78E300BBD491 /* ExpenseDetailView.swift in Sources */,
 				67BC05E42B296D10006C1E9A /* PinSetupView.swift in Sources */,
 				7E24D07028EB32E10085EF99 /* PeriodOverview.swift in Sources */,
 				EBA6850328D37A58000C541E /* Expenses.swift in Sources */,
@@ -460,6 +467,7 @@
 				EBA6850928D37EC2000C541E /* Categories.swift in Sources */,
 				675E3FC42B27B374006E1150 /* UIExtension.swift in Sources */,
 				EBA6850C28D38867000C541E /* Category.swift in Sources */,
+				67FF6F8D2B2B80D500BBD491 /* OptionSheet.swift in Sources */,
 				67BC05E62B297853006C1E9A /* KeychainManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

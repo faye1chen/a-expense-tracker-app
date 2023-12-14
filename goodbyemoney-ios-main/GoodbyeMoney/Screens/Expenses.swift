@@ -15,6 +15,10 @@ struct Expenses: View {
     @State private var searchQuery = ""
     @State private var timeFilter = Period.week
     
+    @State private var selectedExpense: Expense?
+    @State private var showingSheet = false
+    @State private var showingExpenseDetail = false
+    
     @ObservedResults(Expense.self, filter: User.userIdPredicate) var expenses
     
     let columns: [GridItem] = Array(repeating: .init(.adaptive(minimum: 96), spacing: 16), count: 3)
@@ -33,6 +37,21 @@ struct Expenses: View {
         totalExpenses = 0
         totalExpenses = filteredExpenses.reduce(0) { $0 + $1.amount }
     }
+    
+    func handleEdit() {
+        showingSheet.toggle()
+        
+        $expenses.remove(selectedExpense!)
+        showingExpenseDetail.toggle()
+    }
+
+    func handleDelete() {
+        showingSheet.toggle()
+        $expenses.remove(selectedExpense!)
+        
+        reloadData()
+    }
+
     
     var body: some View {
         NavigationView {
@@ -57,7 +76,7 @@ struct Expenses: View {
                         .font(.largeTitle)
                 }
                 
-                ExpensesList(expenses: groupExpensesByDate(filteredExpenses))
+                ExpensesList(expenses: groupExpensesByDate(filteredExpenses), selectedExpense: $selectedExpense, showDetail: $showingSheet)
                     .id(filteredExpenses)
             }
             .frame(
@@ -82,6 +101,13 @@ struct Expenses: View {
         }
         .onAppear {
             reloadData()
+        }
+        .sheet(isPresented: $showingSheet) {
+            OptionSheet(onEdit: handleEdit, onDelete: handleDelete)
+                .presentationDetents([.fraction(0.25)])
+        }
+        .navigationDestination(isPresented: $showingExpenseDetail) {
+            ExpenseDetailView(expense: $selectedExpense)
         }
     }
 }

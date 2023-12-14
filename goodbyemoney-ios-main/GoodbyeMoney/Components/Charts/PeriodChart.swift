@@ -14,6 +14,9 @@ struct PeriodChart: View {
     @State private var averageForPeriod: Double = 0
     @State private var daysInMonth: Int = 30
     
+    @State private var selectedExpense: Expense?
+    @State private var showDetail = false
+    
     @ObservedResults(Expense.self, filter: User.userIdPredicate) var expenses
     
     var period: Period = Period.week
@@ -88,7 +91,8 @@ struct PeriodChart: View {
                     .id(displayExpenses)
             }
             ExpensesBreakdown(expenses: displayExpenses)
-            ExpensesList(expenses: groupExpensesByDate(filterExpensesInPeriod(period: period, expenses: displayExpenses, periodIndex: periodIndex).expenses))
+            
+            ExpensesList(expenses: groupExpensesByDate(filterExpensesInPeriod(period: period, expenses: displayExpenses, periodIndex: periodIndex).expenses), selectedExpense: $selectedExpense, showDetail: $showDetail)
         }
         .onAppear {
             setupData()
@@ -96,8 +100,8 @@ struct PeriodChart: View {
     }
 }
 
-struct PeriodChart_Previews: PreviewProvider {
-    static var previews: some View {
-        PeriodChart()
-    }
-}
+//struct PeriodChart_Previews: PreviewProvider {
+//    static var previews: some View {
+//        PeriodChart()
+//    }
+//}

@@ -8,6 +8,8 @@ import SwiftUI
 
 struct ExpensesList: View {
     var expenses: [Dictionary<String, [Expense]>.Element]
+    @Binding var selectedExpense: Expense?
+    @Binding var showDetail: Bool
     
     func getHeaderText(_ date: String) -> String {
         let headerDate = parseDate(date)
@@ -73,6 +75,10 @@ struct ExpensesList: View {
                                         .foregroundColor(.secondary)
                                 }
                             }
+                            .onTapGesture {
+                                self.selectedExpense = expense
+                                self.showDetail = true
+                            }
                             .padding(.bottom, 12)
                         }
                     }
@@ -84,8 +90,8 @@ struct ExpensesList: View {
     }
 }
 
-struct ExpensesList_Previews: PreviewProvider {
-    static var previews: some View {
-        ExpensesList(expenses: [])
-    }
-}
+//struct ExpensesList_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ExpensesList(expenses: [], selectedExpense: $expense, showDetail: false)
+//    }
+//}
