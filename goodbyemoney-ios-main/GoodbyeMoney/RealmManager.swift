@@ -2,7 +2,6 @@
 //  RealmManager.swift
 //  GoodbyeMoney
 //
-//  Created by Lazar Nikolov on 2022-09-23.
 //
 
 import Foundation
@@ -48,6 +47,17 @@ class RealmManager: ObservableObject {
         }
         
         
+    }
+    
+    func getCateByCateName(_ categoryName : String) -> Category? {
+        guard let localRealm = localRealm else {
+            print("Realm not initialized")
+            return nil
+        }
+        
+        let cate = localRealm.objects(Category.self).filter(User.userIdPredicate).filter("name == %@", categoryName)
+        
+        return cate.first
     }
     
     func getCateByCateId(_ selectedCategoryId : ObjectId) -> Category? {

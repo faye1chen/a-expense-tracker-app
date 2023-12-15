@@ -87,6 +87,14 @@ struct Add: View {
             VStack {
                 List {
                     HStack {
+                        Text("Note")
+                        Spacer()
+                        TextField("Note", text: $note)
+                            .multilineTextAlignment(.trailing)
+                            .submitLabel(.done)
+                    }
+                    
+                    HStack {
                         Text("Amount")
                         Spacer()
                         TextField("Amount", text: $amount)
@@ -95,17 +103,17 @@ struct Add: View {
                             .keyboardType(.numberPad)
                     }
                     
-                    HStack {
-                        Text("Recurrence")
-                        Spacer()
-                        Picker(selection: $recurrence, label: Text(""), content: {
-                            Text("None").tag(Recurrence.none)
-                            Text("Daily").tag(Recurrence.daily)
-                            Text("Weekly").tag(Recurrence.weekly)
-                            Text("Monthly").tag(Recurrence.monthly)
-                            Text("Yearly").tag(Recurrence.yearly)
-                        })
-                    }
+//                    HStack {
+//                        Text("Recurrence")
+//                        Spacer()
+//                        Picker(selection: $recurrence, label: Text(""), content: {
+//                            Text("None").tag(Recurrence.none)
+//                            Text("Daily").tag(Recurrence.daily)
+//                            Text("Weekly").tag(Recurrence.weekly)
+//                            Text("Monthly").tag(Recurrence.monthly)
+//                            Text("Yearly").tag(Recurrence.yearly)
+//                        })
+//                    }
                     
                     HStack {
                         Text("Date")
@@ -118,13 +126,7 @@ struct Add: View {
                         )
                     }
                     
-                    HStack {
-                        Text("Note")
-                        Spacer()
-                        TextField("Note", text: $note)
-                            .multilineTextAlignment(.trailing)
-                            .submitLabel(.done)
-                    }
+                    
                     
                     HStack {
                         Text("Category")

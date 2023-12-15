@@ -22,7 +22,7 @@ struct RoundTextField: View {
                 
                 .foregroundColor(.white)
                 .padding(.bottom, 4)
-            
+                
             
             if(isPassword) {
                 SecureField("", text: $text)
@@ -36,6 +36,7 @@ struct RoundTextField: View {
                     .foregroundColor(.white)
                     .background(Color.gray20.opacity(0.05))
                     .cornerRadius(15)
+                    .autocapitalization(.none)
             }else{
                 TextField("", text: $text)
                     .padding(15)
@@ -48,6 +49,7 @@ struct RoundTextField: View {
                     .foregroundColor(.white)
                     .background(Color.gray20.opacity(0.05))
                     .cornerRadius(15)
+                    .autocapitalization(.none)
             }
             
             

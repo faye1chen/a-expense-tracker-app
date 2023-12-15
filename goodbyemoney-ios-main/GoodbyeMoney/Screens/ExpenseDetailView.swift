@@ -76,6 +76,9 @@ struct ExpenseDetailView: View {
 
         editSucc = true
         
+        alertMsg = "Successfully."
+        self.showAlert = true
+        
         self.amount = ""
         self.recurrence = Recurrence.none
         self.date = Date()
@@ -89,6 +92,13 @@ struct ExpenseDetailView: View {
             VStack {
                 List {
                     HStack {
+                        Text("Note")
+                        Spacer()
+                        TextField("Note", text: $note)
+                            .multilineTextAlignment(.trailing)
+                            .submitLabel(.done)
+                    }
+                    HStack {
                         Text("Amount")
                         Spacer()
                         TextField("Amount", text: $amount)
@@ -97,17 +107,17 @@ struct ExpenseDetailView: View {
                             .keyboardType(.numberPad)
                     }
                     
-                    HStack {
-                        Text("Recurrence")
-                        Spacer()
-                        Picker(selection: $recurrence, label: Text(""), content: {
-                            Text("None").tag(Recurrence.none)
-                            Text("Daily").tag(Recurrence.daily)
-                            Text("Weekly").tag(Recurrence.weekly)
-                            Text("Monthly").tag(Recurrence.monthly)
-                            Text("Yearly").tag(Recurrence.yearly)
-                        })
-                    }
+//                    HStack {
+//                        Text("Recurrence")
+//                        Spacer()
+//                        Picker(selection: $recurrence, label: Text(""), content: {
+//                            Text("None").tag(Recurrence.none)
+//                            Text("Daily").tag(Recurrence.daily)
+//                            Text("Weekly").tag(Recurrence.weekly)
+//                            Text("Monthly").tag(Recurrence.monthly)
+//                            Text("Yearly").tag(Recurrence.yearly)
+//                        })
+//                    }
                     
                     HStack {
                         Text("Date")
@@ -118,14 +128,6 @@ struct ExpenseDetailView: View {
                             displayedComponents: .date,
                             label: { Text("") }
                         )
-                    }
-                    
-                    HStack {
-                        Text("Note")
-                        Spacer()
-                        TextField("Note", text: $note)
-                            .multilineTextAlignment(.trailing)
-                            .submitLabel(.done)
                     }
                     
                     HStack {

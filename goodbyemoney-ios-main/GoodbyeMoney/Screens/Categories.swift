@@ -11,7 +11,6 @@ struct Categories: View {
     
     @EnvironmentObject var realmManager: RealmManager
     
-    @State private var invalidDataAlertShowing = false
     @State private var newCategoryName: String = ""
     @State private var newCategoryColor = Color(.sRGB, red: 0.98, green: 0.9, blue: 0.2)
     
@@ -23,15 +22,27 @@ struct Categories: View {
     
     
     func handleAddCategory() {
-        // TODO: 输入校验
-        if newCategoryName.count > 0 {
-            $categories.append(Category(
-                name: newCategoryName,
-                color: newCategoryColor
-            ))
-        } else {
-            invalidDataAlertShowing = true
+        guard !isEmptyInput(newCategoryName) else {
+            showAlert = true
+            alertMsg = "Invalid Input."
+            return
         }
+       
+        guard (realmManager.getCateByCateName(newCategoryName) == nil) else {
+            showAlert = true
+            alertMsg = "Duplicate Category Name."
+            return
+        }
+        
+        $categories.append(Category(
+            name: newCategoryName,
+            color: newCategoryColor
+        ))
+        
+        showAlert = true
+        alertMsg = "Save Successfully."
+        
+        newCategoryName = ""
     }
     
     func handleDelete(at offsets: IndexSet) {
@@ -101,9 +112,9 @@ struct Categories: View {
                 .background(.blue)
                 .foregroundColor(.white)
                 .cornerRadius(6)
-                .alert("Must provide a category name!", isPresented: $invalidDataAlertShowing) {
+                .alert(alertMsg, isPresented: $showAlert) {
                     Button("OK", role: .cancel) {
-                        invalidDataAlertShowing = false
+                        showAlert = false
                     }
                 }
             }
@@ -119,9 +130,6 @@ struct Categories: View {
                 )
             }
             
-        }.onAppear(){
-//            print((UserManager.shared.currentUser?.userId.stringValue)!)
-//            print(categories)
         }
     }
 }
