@@ -113,10 +113,12 @@ struct SignUpView: View {
                     title: Text("Info"),
                     message: Text(alertMessage),
                     dismissButton: .default(Text("OK")){
+                        if alertMessage == "Sign Up Successfully!" {
+                            showSignIn.toggle()
+                        }
+                        
                         showingAlert = false
                         alertMessage = ""
-                        
-                        showSignIn.toggle()
                     }
                 )
             }
