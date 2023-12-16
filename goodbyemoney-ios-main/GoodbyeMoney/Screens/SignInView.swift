@@ -36,7 +36,10 @@ struct SignInView: View {
             
             // 登陆后存储用户信息和用户设置
             UserManager.shared.currentUser = curUser!
-            UserManager.shared.isAppPINEnabled = UserDefaults.standard.bool(forKey: "isAppPINEnabled")
+            let key = UserManager.shared.currentUser!.email + "isAppPINEnabled"
+            UserManager.shared.isAppPINEnabled = UserDefaults.standard.bool(forKey: key)
+            
+            print(key)
         } else {
             alertMessage = "User not found or password is incorrect."
             showingAlert = true

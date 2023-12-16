@@ -100,7 +100,7 @@ struct Add: View {
                         TextField("Amount", text: $amount)
                             .multilineTextAlignment(.trailing)
                             .submitLabel(.done)
-                            .keyboardType(.numberPad)
+                            .keyboardType(.decimalPad)
                     }
                     
 //                    HStack {

@@ -98,7 +98,8 @@ struct PinSetupView: View {
                         // 将PIN存储到Keychain
                         let saved = KeychainManager.savePIN(pin: newValue, for: UserManager.shared.currentUser!.email)
                         if saved {
-                            UserDefaults.standard.set(true, forKey: "isAppPINEnabled")
+                            let key = UserManager.shared.currentUser!.email + "isAppPINEnabled"
+                            UserDefaults.standard.set(true, forKey: key)
                             
                             // 处理PIN成功存储的情况
                             showingAlert = true

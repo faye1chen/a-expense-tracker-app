@@ -36,6 +36,7 @@ struct ContentView: View {
                     }
             }
             .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
+                print(UserManager.shared.isAppPINEnabled)
                 if UserManager.shared.isAppPINEnabled {
                     needPinVerification.toggle()
                 }
