@@ -23,6 +23,7 @@ struct PeriodChart: View {
     var periodIndex: Int = 0
     
     func formatDateRange(startDate: Date, endDate: Date) -> String {
+        
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         var format = ""
@@ -32,7 +33,9 @@ struct PeriodChart: View {
             break
         case Period.week:
             dateFormatter.dateFormat = "d MMM"
-            format = "\(dateFormatter.string(from: startDate)) - \(dateFormatter.string(from: endDate))"
+            let calendar = Calendar.current
+            let rightEndDate = calendar.date(byAdding: .day, value: -1, to: endDate)
+            format = "\(dateFormatter.string(from: startDate)) - \(dateFormatter.string(from: rightEndDate!))"
         case Period.month:
             dateFormatter.dateFormat = "MMM"
             format = "\(dateFormatter.string(from: startDate))"

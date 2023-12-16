@@ -53,6 +53,7 @@ func intervalForPeriod(period: Period, periodIndex: Int) -> DateInterval {
     }
     
     let targetDate = calendar.date(byAdding: components, to: Date())!
+//    print(targetDate)
     
     return calendar.dateInterval(of: intervalComponent, for: targetDate)!
 }
@@ -77,4 +78,13 @@ func formatDate(_ date: Date, format: String) -> String {
     formatter.dateFormat = format
     
     return formatter.string(from: date)
+}
+
+func getLastDate(lastTimeInterval: TimeInterval) -> String {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd"
+    let lastTime: TimeInterval = lastTimeInterval // 往前减去往前时间的时间戳
+    let lastDate = Date().addingTimeInterval(lastTime)
+    let lastDay = dateFormatter.string(from: lastDate)
+    return lastDay
 }
